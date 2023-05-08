@@ -69,14 +69,14 @@ protected void onPreExecute() {
         }
 
 
-@Override
-protected void onPostExecute(String result) {
-        //Codigo
-           if(this.tv!=null) {
-               this.tv.setText(result);
-           }else {
-               this.pc.result_calculoRemoto(result);
-           }
-        }
+//@Override
+//protected void onPostExecute(String result) {
+//        //Codigo
+//           if(this.tv!=null) {
+//               this.tv.setText(result);
+//           }else {
+//               this.pc.result_calculoRemoto(result);
+//           }
+//        }
 
 }
