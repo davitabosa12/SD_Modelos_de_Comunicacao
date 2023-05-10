@@ -12,6 +12,7 @@ public class CalculadoraHttpPOST implements Calculadora {
 
     }
 
+    @Override
     public void setOnResultado(Callback onResultado) {
         this.onResultado = onResultado;
     }

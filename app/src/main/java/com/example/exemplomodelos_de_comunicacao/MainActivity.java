@@ -2,6 +2,7 @@ package com.example.exemplomodelos_de_comunicacao;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,20 +12,34 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements Callback, View.OnClickListener {
 
     TextView tv;
-    CalculadoraSocket calculadoraHttpPOST;
+    Calculadora calculadora;
     EditText oper1;
     EditText oper2;
     Button btnSoma;
+    Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.extras = getIntent().getExtras();
+        if (extras != null) {
+            if (extras.getBoolean("useSockets")) {
+                String host = extras.getString("host");
+                int port = extras.getInt("port");
+                calculadora = new CalculadoraSocket(host, port);
+            } else {
+                calculadora = new CalculadoraHttpPOST();
+            }
+        } else {
+            calculadora = new CalculadoraHttpPOST();
+        }
+
         setContentView(R.layout.activity_main);
         btnSoma = findViewById(R.id.btnSomar);
         oper1 = findViewById(R.id.edtOp1);
         oper2 = findViewById(R.id.edtOp2);
         tv= findViewById(R.id.textView);
-        calculadoraHttpPOST = new CalculadoraSocket();
-        calculadoraHttpPOST.setOnResultado(this);
+
+        calculadora.setOnResultado(this);
         btnSoma.setOnClickListener(this);
         }
 
@@ -38,13 +53,19 @@ public class MainActivity extends AppCompatActivity implements Callback, View.On
         int id = view.getId();
 
         if (id == R.id.btnSomar) {
-            calculadoraHttpPOST.somar(oper1.getText().toString(), oper2.getText().toString());
+            calculadora.somar(oper1.getText().toString(), oper2.getText().toString());
         } else if (id == R.id.btnSubtrair) {
-            calculadoraHttpPOST.subtrair(oper1.getText().toString(), oper2.getText().toString());
+            calculadora.subtrair(oper1.getText().toString(), oper2.getText().toString());
         } else if (id == R.id.btnMultiplicar) {
-            calculadoraHttpPOST.multiplicar(oper1.getText().toString(), oper2.getText().toString());
+            calculadora.multiplicar(oper1.getText().toString(), oper2.getText().toString());
         } else if (id == R.id.btnDividir) {
-            calculadoraHttpPOST.dividir(oper1.getText().toString(), oper2.getText().toString());
+            calculadora.dividir(oper1.getText().toString(), oper2.getText().toString());
+        } else if (id == R.id.btnConfig) {
+            Intent i = new Intent(this, SettingsActivity.class);
+            if(this.extras != null) {
+                i.putExtras(this.extras);
+            }
+            startActivity(i);
         }
     }
 }

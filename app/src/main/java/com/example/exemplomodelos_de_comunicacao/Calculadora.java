@@ -8,4 +8,7 @@ public interface Calculadora {
     double subtrair(String oper1, String oper2);
     double multiplicar(String oper1, String oper2);
     double dividir(String oper1, String oper2);
+
+    void setOnResultado(Callback onResultado);
+
 }

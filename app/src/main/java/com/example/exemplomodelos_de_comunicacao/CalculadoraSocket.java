@@ -13,6 +13,14 @@ import java.net.Socket;
 public class CalculadoraSocket implements Calculadora {
 
     Callback onResultado;
+    String host;
+    int port;
+    public CalculadoraSocket(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+
+    @Override
     public void setOnResultado(Callback onResultado) {
         this.onResultado = onResultado;
     }
