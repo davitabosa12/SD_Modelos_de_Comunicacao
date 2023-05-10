@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements Callback, View.OnClickListener {
 
     TextView tv;
-    CalculadoraHttpPOST calculadoraHttpPOST;
+    CalculadoraSocket calculadoraHttpPOST;
     EditText oper1;
     EditText oper2;
     Button btnSoma;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements Callback, View.On
         oper1 = findViewById(R.id.edtOp1);
         oper2 = findViewById(R.id.edtOp2);
         tv= findViewById(R.id.textView);
-        calculadoraHttpPOST = new CalculadoraHttpPOST();
+        calculadoraHttpPOST = new CalculadoraSocket();
         calculadoraHttpPOST.setOnResultado(this);
         btnSoma.setOnClickListener(this);
         }
