@@ -26,7 +26,7 @@ public class CalculadoraSocket implements Calculadora {
     }
     @Override
     public double somar(String oper1, String oper2) {
-        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_SOMAR, "192.168.18.188", 9090);
+        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_SOMAR, this.host, this.port);
         comunicadorSocket.setOnResultado(this.onResultado);
         comunicadorSocket.execute();
         return 0;
@@ -34,7 +34,7 @@ public class CalculadoraSocket implements Calculadora {
 
     @Override
     public double subtrair(String oper1, String oper2) {
-        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_SUBTRAIR, "192.168.18.188", 9090);
+        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_SUBTRAIR, this.host, this.port);
         comunicadorSocket.setOnResultado(this.onResultado);
         comunicadorSocket.execute();
         return 0;
@@ -42,7 +42,7 @@ public class CalculadoraSocket implements Calculadora {
 
     @Override
     public double multiplicar(String oper1, String oper2) {
-        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_MULTIPLICAR, "192.168.18.188", 9090);
+        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_MULTIPLICAR, this.host, this.port);
         comunicadorSocket.setOnResultado(this.onResultado);
         comunicadorSocket.execute();
         return 0;
@@ -50,7 +50,7 @@ public class CalculadoraSocket implements Calculadora {
 
     @Override
     public double dividir(String oper1, String oper2) {
-        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_DIVIDIR, "192.168.18.188", 9090);
+        ComunicadorSocket comunicadorSocket = new ComunicadorSocket("" + oper1, "" + oper2, ComunicadorSocket.OPERACAO_DIVIDIR, this.host, this.port);
         comunicadorSocket.setOnResultado(this.onResultado);
         comunicadorSocket.execute();
         return 0;
